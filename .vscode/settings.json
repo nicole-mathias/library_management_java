@@ -1,0 +1,7 @@
+{
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "java.import.maven.enabled": true,
+  "java.project.referencedLibraries": [
+    "${env:HOME}/.m2/repository/jakarta/validation/jakarta.validation-api/3.0.2/jakarta.validation-api-3.0.2.jar"
+  ]
+}
