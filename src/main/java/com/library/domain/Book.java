@@ -1,23 +1,31 @@
 package com.library.domain;
 
-class Book{
-    private String issn;
+public class Book{
+    private String isbn;
     private String name;
     private String author;
     private int quantity;
 
-    public Book(String issn, String name, String author, int quantity) {
-        this.issn = issn;
+    public Book(String isbn, String name, String author, int quantity) {
+        this.isbn = isbn;
         this.name = name;
         this.author = author;
         this.quantity = quantity;
     }
 
-    public String getIssn(){
-        return issn;
+    public String getIsbn(){
+        return isbn;
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 }

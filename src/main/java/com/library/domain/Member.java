@@ -3,8 +3,8 @@ package com.library.domain;
 import java.util.HashMap;
 import java.util.Map;
 
-abstract class Member{
-    private String id;
+public abstract class Member{
+    private int id;
     private MemberType member_type;
     private String name;
     private Map<String, BorrowBook> books_borrowed;
@@ -12,7 +12,7 @@ abstract class Member{
     private int days_allowed;
     private double pendingFees = 0.0;
 
-    public Member(String id, MemberType member_type, String name, int books_allowed_count, int days_allowed) {
+    public Member(int id, MemberType member_type, String name, int books_allowed_count, int days_allowed) {
         this.id = id;
         this.member_type = member_type;
         this.name = name;
@@ -21,9 +21,17 @@ abstract class Member{
         this.days_allowed = days_allowed;
     }
 
+    public String getName(){
+        return name;
+    }
+
+    public int getDays_allowed() {
+        return days_allowed;
+    }
+
     public void borrow_book(Book book){
         // check if the same book was already borrowed
-        if (books_borrowed.containsKey(book.getIssn())){
+        if (books_borrowed.containsKey(book.getIsbn())){
             System.out.println("Book was already borrowed...");
             return;
         }
@@ -33,7 +41,7 @@ abstract class Member{
             return;
         }
         BorrowBook borrowed_obj = new BorrowBook(this, book);
-        books_borrowed.put(book.getIssn(), borrowed_obj);
+        books_borrowed.put(book.getIsbn(), borrowed_obj);
     }
 
     public boolean can_borrow(){
@@ -42,17 +50,21 @@ abstract class Member{
     }
 
     public void returnBook(Book book){
-        String book_issn = book.getIssn();
+        String book_isbn = book.getIsbn();
 
-        if (books_borrowed.containsKey(book_issn)) {
-            BorrowBook borrowed_book_obj = books_borrowed.get(book_issn);
+        if (books_borrowed.containsKey(book_isbn)) {
+            BorrowBook borrowed_book_obj = books_borrowed.get(book_isbn);
             borrowed_book_obj.setReturnDate();
 
             double fee = borrowed_book_obj.calculateFees(days_allowed);
             System.out.println("Book returned, Due: $" + fee);
             pendingFees = pendingFees + fee;
-            books_borrowed.remove(book_issn);
+            books_borrowed.remove(book_isbn);
         }
+    }
+
+    public Map<String, BorrowBook> getBooks_borrowed() {
+        return books_borrowed;
     }
 
     public double getPendingFees() {
@@ -62,23 +74,5 @@ abstract class Member{
     public void payFees(double amount) {
         pendingFees = pendingFees - amount;
         System.out.println("Paid amount: " + amount + ", current pending fees: " + pendingFees);
-    }
-}
-
-class Student extends Member{
-    private static final int BOOKS_ALLOWED_COUNT = 5;
-    private static final int DAYS_ALLOWED = 15;
-
-    public Student(String id, String name){
-        super(id, MemberType.StudentMember, name, BOOKS_ALLOWED_COUNT, DAYS_ALLOWED);
-    }
-}
-
-class Staff extends Member{
-    private static final int BOOKS_ALLOWED_COUNT = 10;
-    private static final int DAYS_ALLOWED = 30;
-
-    public Staff(String id, String name){
-        super(id, MemberType.StaffMember, name, BOOKS_ALLOWED_COUNT, DAYS_ALLOWED);
     }
 }

@@ -2,10 +2,10 @@ package com.library.domain;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
 
-
-
-class Library{
+public class Library{
 
     private Map<String,Book> books;
 
@@ -18,11 +18,15 @@ class Library{
     }
 
     public void addBook(Book book) {
-        this.books.put(book.getIssn(), book);
+        this.books.put(book.getIsbn(), book);
+    }
+
+    public List<Book> getAllBooks() {
+        return new ArrayList<>(books.values());
     }
 
     public void borrowBook(Member member, Book book) {
-        if (!books.containsKey(book.getIssn())) {
+        if (!books.containsKey(book.getIsbn())) {
             System.out.println("Book not in library catalog.");
             return;
         }
@@ -32,7 +36,7 @@ class Library{
     public Book getBookByName(String name){
         String normalizedName = name.strip().toLowerCase();
         for (Map.Entry<String, Book> entry :this.books.entrySet()) {
-            String issn = entry.getKey();
+            String isbn = entry.getKey();
             Book book = entry.getValue();
 
             // make name lower case while comparing and remove and extra spaces
@@ -43,8 +47,8 @@ class Library{
         return null;
     }
 
-    public Book getBookByIssn(String issn) {
-        return books.get(issn);
+    public Book getBookByIsbn(String isbn) {
+        return books.get(isbn);
     }
 
 
@@ -55,9 +59,9 @@ class Library{
         // they can still return a book - which have any checks done
 
         // check if the provided book is valid and exists in the inventory of books
-        String book_issn = book.getIssn();
+        String book_isbn = book.getIsbn();
 
-        if (!this.books.containsKey(book_issn)){
+        if (!this.books.containsKey(book_isbn)){
             System.out.println("Invalid book...");
             return;
         }

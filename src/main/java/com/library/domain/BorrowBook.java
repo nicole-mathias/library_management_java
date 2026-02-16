@@ -3,7 +3,7 @@ package com.library.domain;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-class BorrowBook {
+public class BorrowBook {
     private Book book;
     private LocalDate borrowedDate = LocalDate.now();
     private LocalDate returnDate;
@@ -12,6 +12,14 @@ class BorrowBook {
     public BorrowBook(Member member, Book book){
         this.member = member;
         this.book = book;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public LocalDate getBorrowedDate() {
+        return borrowedDate;
     }
 
     public void setReturnDate() {
