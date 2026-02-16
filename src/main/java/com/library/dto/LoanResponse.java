@@ -2,11 +2,11 @@ package com.library.dto;
 
 import java.time.LocalDate;
 
-public record LoanResponse (
-    int loanId,
+public record LoanResponse(
+    Integer loanId,
     String isbn,
     String bookTitle,
-    String memberId,
+    int memberId,
     LocalDate issueDate,
     LocalDate dueDate,
     Double fineOnReturn

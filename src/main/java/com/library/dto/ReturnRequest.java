@@ -21,7 +21,7 @@ import jakarta.validation.constraints.Positive;
 
 public record ReturnRequest (
     @Positive Integer loanId,
-    String memberId,
+    Integer memberId,
     String isbn 
 ) {
     // this only used memberID and isbn (loanId can be used in the future to make code more useable for a DB)

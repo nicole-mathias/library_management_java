@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Positive;
 
 public record CreateBookRequest (
     @NotBlank String isbn,
-    @NotBlank String name,
+    @NotBlank String title,
     @NotBlank String author, 
     @Positive int copies
 ) {}
