@@ -35,7 +35,6 @@ public class MemberService {
         return toMemberResponse(id, member);
     }
 
-    // TODO - how does this getIdToMember() work??
     public List<MemberResponse> getAllMembers() {
         List<MemberResponse> out = new ArrayList<>();
 

@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LibraryService {
+public class LibraryManagement {
     public static void main(String[] args) {
-        SpringApplication.run(LibraryService.class, args);
+        SpringApplication.run(LibraryManagement.class, args);
     }
 }
